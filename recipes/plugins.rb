@@ -11,7 +11,7 @@ end
 node['mo_collectd']['process'].each do |name, regex|
   collectd_conf "processes #{name}" do
     plugin 'processes'
-    conf 'ProcessMatch' => Array(name) + Array(regex)
+    conf 'ProcessMatch' => [ Array(name)+ Array(regex) ]
   end
 end
 
