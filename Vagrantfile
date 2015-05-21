@@ -28,7 +28,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       }
       chef.run_list = [
         "recipe[apt::default]",
+        "recipe[mo_mysql::standalone-server]",
         "recipe[mo_collectd]",
+        "recipe[mo_collectd::plugin_mysql]",
       ]
     end
   end

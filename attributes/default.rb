@@ -6,4 +6,10 @@ default['mo_collectd']['interface'] = node.network.default_interface
 default['mo_collectd']['graphite']['host'] = '127.0.0.1'
 default['mo_collectd']['graphite']['port'] = 2003
 default['mo_collectd']['graphite']['protocol'] = 'udp'
+default['mo_collectd']['mysql']['host'] = node.fqdn
+default['mo_collectd']['mysql']['username'] = 'collectd'
+default['mo_collectd']['mysql']['password'] = 'collectdpass'
+default['mo_collectd']['mysql']['port'] = '3306'
+default['mo_collectd']['mysql']['superuser'] = 'root'
+default['mo_collectd']['mysql']['superuser_password'] = nil
 
