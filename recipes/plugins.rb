@@ -76,7 +76,7 @@ if ubuntu_before_or_at_precise?
             'LineReceiverPort' => node['mo_collectd']['graphite']['port'],
             'LineReceiverProtocol' => node['mo_collectd']['graphite']['protocol'],
             'DifferentiateCountersOverTime' => true,
-            'MetricPrefix' => "collectd.",
+            'MetricPrefix' => "collectd.#{node.chef_environment}.",
             'TypesDB' => node['collectd']['types_db']
          }
   end
@@ -89,7 +89,7 @@ else
            'Protocol' => node['mo_collectd']['graphite']['protocol'],
            'LogSendErrors' => true,
            'AlwaysAppendDS' => false,
-           'Prefix' => 'collectd.'
+           'Prefix' => "collectd.#{node.chef_environment}."
          }
   end
 end
