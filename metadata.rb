@@ -4,7 +4,7 @@ maintainer_email 'YOUR_EMAIL'
 license          'All rights reserved'
 description      'Installs/Configures mo_collectd'
 long_description 'Installs/Configures mo_collectd'
-version          '1.0.3'
+version          '1.0.4'
 
 depends 'collectd-lib',     '~> 3.0.1'
 
