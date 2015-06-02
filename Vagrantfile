@@ -15,7 +15,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define 'collectd', primary: true do |app|
     app.vm.hostname = "collectd.desarrollo.unlp.edu.ar"
     app.omnibus.chef_version = "11.16.4"
-    app.vm.box = "chef/ubuntu-14.04"
+    app.vm.box = "chef/ubuntu-12.04"
     app.vm.network :private_network, ip: "10.100.100.3"
     app.berkshelf.enabled = true
     app.vm.provision :chef_solo do |chef|
@@ -31,7 +31,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         "recipe[mo_mysql::standalone-server]",
         "recipe[mo_collectd]",
         "recipe[mo_collectd::plugin_mysql]",
-        "recipe[mo_collectd::test_nginx]",
       ]
     end
   end

@@ -20,7 +20,7 @@ collectd_conf 'df' do
   conf( {
         'MountPoint' => node['mo_collectd']['df']
         }.merge(
-          ubuntu_before_or_at_precise? || debian_before_or_at_wheezy? ? {} : {
+          debian_before_or_at_wheezy? ? {} : {
             'ValuesPercentage' => true
           }))
 end
@@ -57,7 +57,7 @@ collectd_conf 'ntpd' do
     'Port' => node['mo_collectd']['ntpd']['port']
 end
 
-if ubuntu_before_or_at_precise? || debian_before_or_at_wheezy?
+if debian_before_or_at_wheezy?
 
   package "libpython2.7"
 
@@ -80,6 +80,7 @@ if ubuntu_before_or_at_precise? || debian_before_or_at_wheezy?
             'TypesDB' => node['collectd']['types_db']
          }
   end
+
 else
   collectd_conf 'write_graphite' do
     plugin 'write_graphite'
