@@ -1,4 +1,5 @@
 include_recipe "chef-sugar"
+include_recipe "mo_collectd::plugin_postfix"
 
 collectd_conf 'cpu' do
   plugin 'cpu'

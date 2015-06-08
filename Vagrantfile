@@ -30,6 +30,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         "recipe[apt::default]",
         "recipe[mo_mysql::standalone-server]",
         "recipe[mo_collectd]",
+        "recipe[mo_collectd::plugin_postfix]",
         "recipe[mo_collectd::plugin_mysql]",
         "recipe[mo_collectd::plugin_php_fpm]",
       ]

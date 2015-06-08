@@ -1,5 +1,5 @@
 #Filenames are splitted because sometimes log file has a modifier defining log format
-def mo_collectd_php_fpm(instance_name, url, options = {}, create = true)
+def mo_collectd_php_fpm(instance_name, url, host, create = true)
   begin
     run_context.resource_collection.find("service[collectd]")
   rescue Chef::Exceptions::ResourceNotFound
@@ -17,16 +17,17 @@ def mo_collectd_php_fpm(instance_name, url, options = {}, create = true)
               %w(Plugin curl_json) => {
                 %W(URL #{url}) => {
                   "Instance" => "fpm_#{instance_name}",
-                  %W(Key accepted conn) => {
+                  "Header" => "Host: #{host|| "localhost"}",
+                  %W(Key accepted\ conn) => {
                     "Type" => "fpm_http_requests"
                   },
-                  %W(Key listen queue len) => {
+                  %W(Key listen\ queue\ len) => {
                     "Type" => "fpm_listen_queue"
                   },
-                  %W(Key active processes) => {
+                  %W(Key active\ processes) => {
                     "Type" => "fpm_active_processes"
                   },
-                  %W(Key total processes) => {
+                  %W(Key total\ processes) => {
                     "Type" => "fpm_total_processes"
                   }
                 }
