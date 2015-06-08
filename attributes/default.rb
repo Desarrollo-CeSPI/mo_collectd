@@ -23,3 +23,10 @@ default['mo_collectd']['mysql']['superuser_password'] = nil
 
 default['mo_collectd']['nginx']['status_url'] = "http://localhost:8090/nginx_status"
 
+default['mo_collectd']['fpm']['types_db'] = <<-EOL
+# types.db
+fpm_http_requests      count:COUNTER:0:134217728
+fpm_listen_queue       value:GAUGE:0:65535
+fpm_active_processes   value:GAUGE:0:65535
+fpm_total_processes    value:GAUGE:0:65535
+EOL
