@@ -58,9 +58,15 @@ collectd_conf 'ntpd' do
     'Port' => node['mo_collectd']['ntpd']['port']
 end
 
+
+
 if debian_before_or_at_wheezy?
 
-  package "libpython2.7"
+  if debian_before_wheezy?
+    package "libpython2.6"
+  else
+    package "libpython2.7"
+  end
 
   cookbook_file File.join(node[:collectd][:plugin_dir], "carbon_writer.py") do
     owner "root"
