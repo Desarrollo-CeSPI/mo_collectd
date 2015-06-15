@@ -15,3 +15,4 @@ include_recipe 'collectd-lib::config'
 include_recipe 'collectd-lib::service'
 
 include_recipe 'mo_collectd::plugins'
+include_recipe 'mo_collectd::helpers'
