@@ -30,3 +30,5 @@ fpm_listen_queue       value:GAUGE:0:65535
 fpm_active_processes   value:GAUGE:0:65535
 fpm_total_processes    value:GAUGE:0:65535
 EOL
+
+default['mo_collectd']['user_rss']['script'] = "/usr/local/bin/mo_collectd_user_rss"
