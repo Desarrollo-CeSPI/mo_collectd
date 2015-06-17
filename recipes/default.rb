@@ -9,7 +9,15 @@ if ubuntu_before_or_at_precise?
 end
 
 node.set['collectd']['fqdn_lookup'] = true
-include_recipe 'collectd-lib::packages'
+if debian_wheezy?
+  cookbook_file 'collectd-core_5.4.1-6_amd64.deb' do
+    path '/root/collectd-core_5.4.1-6_amd64.deb'
+  end
+
+  dpkg_package '/root/collectd-core_5.4.1-6_amd64.deb'
+else
+  include_recipe 'collectd-lib::packages'
+end
 include_recipe 'collectd-lib::directories'
 include_recipe 'collectd-lib::config'
 include_recipe 'collectd-lib::service'
