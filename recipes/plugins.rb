@@ -1,5 +1,6 @@
 include_recipe "chef-sugar"
 include_recipe "mo_collectd::plugin_postfix"
+include_recipe "mo_collectd::plugin_iostats"
 
 collectd_conf 'cpu' do
   plugin 'cpu'
@@ -21,7 +22,7 @@ collectd_conf 'df' do
   conf( {
         'MountPoint' => node['mo_collectd']['df']
         }.merge(
-          debian_before_or_at_wheezy? ? {} : {
+          debian_before_wheezy? ? {} : {
             'ValuesPercentage' => true
           }))
 end
@@ -60,13 +61,9 @@ end
 
 
 
-if debian_before_or_at_wheezy?
+if debian_before_wheezy?
 
-  if debian_before_wheezy?
-    package "libpython2.6"
-  else
-    package "libpython2.7"
-  end
+  include_recipe "mo_collectd::_libpython"
 
   cookbook_file File.join(node[:collectd][:plugin_dir], "carbon_writer.py") do
     owner "root"
