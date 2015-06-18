@@ -1,4 +1,4 @@
-package 'libyajl1'
+package ubuntu_before_or_at_precise? ? 'libyajl1' : 'libyajl2'
 
 types_db = ::File.join node['collectd']['extra_conf_dir'], 'fpm-types.db'
 
