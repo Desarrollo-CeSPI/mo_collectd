@@ -36,5 +36,6 @@ def mo_collectd_nginx_log(instance_name, access_log, error_log, create=true)
               "\n"
     action create ? :create : :delete
     notifies :restart, "service[collectd]"
+    only_if "test -d #{node['collectd']['extra_conf_dir']}"
   end
 end
