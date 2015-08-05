@@ -15,16 +15,19 @@ collectd_conf 'mysql' do
     )
 end
 
-db_connection = {host: node['mo_collectd']['mysql']['host'], 
-                 username: node['mo_collectd']['mysql']['superuser'], 
-                 password: node['mo_collectd']['mysql']['superuser_password'] || node['mysql']['server_root_password']
-                }
+if node['mo_collectd']['mysql']['create_user']
 
-mysql_database_user node['mo_collectd']['mysql']['username'] do
-  connection db_connection
-  username node['mo_collectd']['mysql']['username']
-  password node['mo_collectd']['mysql']['password']
-  host node['mo_collectd']['mysql']['host']
-  privileges ['USAGE', 'REPLICATION CLIENT']
-  action [:create , :grant]
+  db_connection = {host: node['mo_collectd']['mysql']['host'], 
+                   username: node['mo_collectd']['mysql']['superuser'], 
+                   password: node['mo_collectd']['mysql']['superuser_password'] || node['mysql']['server_root_password']
+                  }
+
+  mysql_database_user node['mo_collectd']['mysql']['username'] do
+    connection db_connection
+    username node['mo_collectd']['mysql']['username']
+    password node['mo_collectd']['mysql']['password']
+    host node['mo_collectd']['mysql']['host']
+    privileges ['USAGE', 'REPLICATION CLIENT']
+    action [:create , :grant]
+  end
 end
