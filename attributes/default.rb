@@ -15,7 +15,7 @@ default['mo_collectd']['postfix']['types_db'] = "mail_counter value:COUNTER:0:65
 default['mo_collectd']['postfix']['log_file'] = "/var/log/mail.log"
 
 
-default['mo_collectd']['mysql']['host'] = '127.0.0.1'
+default['mo_collectd']['mysql']['host'] = node.fqdn
 default['mo_collectd']['mysql']['create_user'] = true
 default['mo_collectd']['mysql']['username'] = 'collectd'
 default['mo_collectd']['mysql']['password'] = 'collectdpass'

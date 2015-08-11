@@ -26,7 +26,7 @@ if node['mo_collectd']['mysql']['create_user']
     connection db_connection
     username node['mo_collectd']['mysql']['username']
     password node['mo_collectd']['mysql']['password']
-    host node['mo_collectd']['mysql']['host']
+    host "%"
     privileges ['USAGE', 'REPLICATION CLIENT']
     action [:create , :grant]
   end
